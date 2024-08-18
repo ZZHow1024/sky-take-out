@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
 
             return Result.error(username + MessageConstant.ALREADY_EXISTS);
         } else {
-            return Result.error("位置错误");
+            return Result.error("未知错误");
         }
     }
 
