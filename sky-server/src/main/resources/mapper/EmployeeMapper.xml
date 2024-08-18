@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.EmployeeMapper">
     <!-- 员工分页查询 -->
-    <!-- id, name, username, password, phone, sex, id_number, status, create_time, update_time, create_user, update_user -->
+    <!-- `id`, `name`, `username`, `password`, `phone`, `sex`, `id_number`, `status`, `create_time`, `update_time`, `create_user`, `update_user` -->
     <select id="pageQuery" resultType="com.sky.entity.Employee">
         select `id`, `name`, `username`, `phone`, `status`, `update_time`
         from `employee`
@@ -44,7 +44,7 @@
                 `update_time` = #{updateTime},
             </if>
             <if test="updateUser != null">
-                update_user = #{updateUser}
+                `update_user` = #{updateUser}
             </if>
         </set>
         where `id` = #{id}
