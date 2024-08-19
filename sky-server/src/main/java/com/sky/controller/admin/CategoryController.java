@@ -88,4 +88,20 @@ public class CategoryController {
 
         return Result.success();
     }
+
+    /**
+     * 根据 ID 删除分类
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping()
+    @ApiOperation("根据 ID 删除分类")
+    public Result<String> remove(Long id) {
+        log.info("根据 ID 删除分类：id = {}", id);
+
+        categoryService.remove(id);
+
+        return Result.success();
+    }
 }

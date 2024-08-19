@@ -94,4 +94,14 @@ public class CategoryServiceImpl implements CategoryService {
 
         categoryMapper.update(category);
     }
+
+    /**
+     * 根据 ID 删除分类
+     *
+     * @param id
+     */
+    @Override
+    public void remove(Long id) {
+        categoryMapper.delete(id);
+    }
 }
