@@ -14,8 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author ZZHow
@@ -103,5 +103,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void remove(Long id) {
         categoryMapper.delete(id);
+    }
+
+    /**
+     * 根据类型查询分类
+     *
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Category> getByType(Integer type) {
+        return categoryMapper.select(type);
     }
 }

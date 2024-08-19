@@ -2,6 +2,7 @@ package com.sky.controller.admin;
 
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
+import com.sky.entity.Category;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CategoryService;
@@ -10,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author ZZHow
@@ -95,7 +98,7 @@ public class CategoryController {
      * @param id
      * @return
      */
-    @DeleteMapping()
+    @DeleteMapping
     @ApiOperation("根据 ID 删除分类")
     public Result<String> remove(Long id) {
         log.info("根据 ID 删除分类：id = {}", id);
@@ -103,5 +106,21 @@ public class CategoryController {
         categoryService.remove(id);
 
         return Result.success();
+    }
+
+    /**
+     * 根据类型查询分类
+     *
+     * @param type
+     * @return
+     */
+    @GetMapping("/list")
+    @ApiOperation("根据类型查询分类")
+    public Result<List<Category>> getByType(Integer type) {
+        log.info("根据类型查询分类");
+
+        List<Category> categories = categoryService.getByType(type);
+
+        return Result.success(categories);
     }
 }
