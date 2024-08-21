@@ -30,6 +30,9 @@
         <jjwt>0.9.1</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
         <poi>3.16</poi>
+        <wechatpay>0.4.8</wechatpay>
+        <minio>8.5.12</minio>
+        <okhttp>4.12.0</okhttp>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -120,7 +123,14 @@
             <dependency>
                 <groupId>com.github.wechatpay-apiv3</groupId>
                 <artifactId>wechatpay-apache-httpclient</artifactId>
-                <version>0.4.8</version>
+                <version>${wechatpay}</version>
+            </dependency>
+
+            <!-- MinIO -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
