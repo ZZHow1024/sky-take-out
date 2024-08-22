@@ -5,10 +5,10 @@ import com.sky.dto.DishPageQueryDTO;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.DishService;
+import com.sky.vo.DishVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,5 +73,21 @@ public class DishController {
         dishService.removeByIds(ids);
 
         return Result.success();
+    }
+
+    /**
+     * 根据 ID 查询菜品和口味数据
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据 ID 查询菜品")
+    public Result<DishVO> get(@PathVariable Long id) {
+        log.info("根据 ID 查询菜品：id = {}", id);
+
+        DishVO dishVO = dishService.getWithFlavor(id);
+
+        return Result.success(dishVO);
     }
 }
