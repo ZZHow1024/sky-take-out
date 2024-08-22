@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.DishMapper">
-
     <!-- 菜品分页查询 -->
     <select id="selectPage" resultType="com.sky.vo.DishVO">
         select `dish`.`id`,
@@ -41,5 +40,15 @@
         values (#{name}, #{categoryId}, #{price}, #{image}, #{description}, #{status},
                 #{createTime}, #{updateTime}, #{createUser}, #{updateUser})
     </insert>
+
+    <!-- 根据 ID 列表批量删除菜品 -->
+    <delete id="deleteBatch">
+        delete
+        from `dish`
+        where `id` in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>
