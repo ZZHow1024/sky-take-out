@@ -17,4 +17,14 @@
         values (#{setmealId}, #{dishId}, #{name}, #{price}, #{copies});
     </insert>
 
+    <!-- 根据套餐 ID 批量删除菜品关系 -->
+    <delete id="deleteBatchBySetmealId">
+        delete
+        from `setmeal_dish`
+        where `setmeal_id` in
+        <foreach collection="ids" item="setmealId" separator="," open="(" close=")">
+            #{setmealId}
+        </foreach>
+    </delete>
+
 </mapper>

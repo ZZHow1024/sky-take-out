@@ -38,4 +38,14 @@
         order by `update_time` desc
     </select>
 
+    <!-- 批量删除套餐 -->
+    <delete id="deleteBatch">
+        delete
+        from `setmeal`
+        where `id` in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 </mapper>

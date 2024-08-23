@@ -9,6 +9,8 @@ import com.sky.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * @author ZZHow
  * @date 2024/8/18
@@ -40,4 +42,20 @@ public interface SetmealMapper {
      * @return
      */
     Page<SetmealVO> selectPage(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 根据 ID 获取套餐状态
+     *
+     * @param id
+     * @return
+     */
+    @Select("select `status` from `setmeal` where `id` = #{id}")
+    Integer getStatus(Long id);
+
+    /**
+     * 批量删除套餐
+     *
+     * @param ids
+     */
+    void deleteBatch(List<Long> ids);
 }
