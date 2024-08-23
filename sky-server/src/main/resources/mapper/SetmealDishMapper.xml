@@ -4,7 +4,7 @@
 <mapper namespace="com.sky.mapper.SetmealDishMapper">
 
     <!-- 根据菜品 ID 查询套餐 ID -->
-    <select id="getSetmealIdsByDishIds" resultType="java.lang.Long">
+    <select id="selectSetmealIdsByDishIds" resultType="java.lang.Long">
         select `setmeal_id` from `setmeal_dish` where `dish_id` in
         <foreach collection="dishIds" item="dishId" separator="," open="(" close=")">
             #{dishId}
@@ -26,5 +26,15 @@
             #{setmealId}
         </foreach>
     </delete>
+
+    <!-- 批量插入套餐菜品关系 -->
+    <insert id="insertBatch">
+        insert into `setmeal_dish` (`setmeal_id`, `dish_id`, `name`, `price`, `copies`)
+        values
+        <foreach collection="setmealDishes" item="setmealDish" separator="), (" open="(" close=")">
+            #{setmealDish.setmealId}, #{setmealDish.dishId}, #{setmealDish.name}, #{setmealDish.price},
+            #{setmealDish.copies}
+        </foreach>
+    </insert>
 
 </mapper>

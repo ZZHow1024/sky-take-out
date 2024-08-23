@@ -98,7 +98,7 @@ public class DishServiceImpl implements DishService {
         }
 
         // 判断菜品是否被套餐关联
-        List<Long> setmealIds = setmealDishMapper.getSetmealIdsByDishIds(ids);
+        List<Long> setmealIds = setmealDishMapper.selectSetmealIdsByDishIds(ids);
         if (setmealIds != null && !setmealIds.isEmpty()) {
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }

@@ -58,4 +58,23 @@ public interface SetmealMapper {
      * @param ids
      */
     void deleteBatch(List<Long> ids);
+
+    /**
+     * 根据 ID 查询套餐
+     *
+     * @param id
+     * @return
+     */
+    @Select("select `category_id`, `category`.`name`, `description`, `setmeal`.`id`, `image`, `setmeal`.`name`, `price`, `setmeal`.`status`, `setmeal`.`update_time` " +
+            " from `setmeal` left outer join `category` on `setmeal`.`category_id` = `category`.`id`" +
+            " where `setmeal`.`id` = #{id}")
+    SetmealVO get(Long id);
+
+    /**
+     * 修改套餐
+     *
+     * @param setmeal
+     */
+    @Autofill(OperationType.UPDATE)
+    void update(Setmeal setmeal);
 }
