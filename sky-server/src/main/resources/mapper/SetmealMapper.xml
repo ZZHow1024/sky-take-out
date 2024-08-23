@@ -67,6 +67,9 @@
             <if test="description != null">
                 `description` = #{description},
             </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
             <if test="updateTime != null">
                 `update_time` = #{updateTime},
             </if>
