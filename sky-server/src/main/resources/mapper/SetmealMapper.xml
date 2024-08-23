@@ -11,4 +11,31 @@
                 #{updateUser})
     </insert>
 
+    <!-- 套餐分页查询 -->
+    <select id="selectPage" resultType="com.sky.vo.SetmealVO">
+        select setmeal.`id`,
+        `category_id`,
+        `setmeal`.`name`,
+        `price`,
+        `setmeal`.`status`,
+        `description`,
+        `image`,
+        `setmeal`.`update_time`,
+        `category`.`name` as 'categoryName'
+        from `setmeal`
+        left outer join `category` on `setmeal`.`category_id` = `category`.`id`
+        <where>
+            <if test="name != null and name != ''">
+                and `setmeal`.`name` like concat('%', #{name}, '%')
+            </if>
+            <if test="categoryId != null">
+                and `category_id` = #{categoryId}
+            </if>
+            <if test="status != null">
+                and `setmeal`.`status` = #{status}
+            </if>
+        </where>
+        order by `update_time` desc
+    </select>
+
 </mapper>
