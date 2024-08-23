@@ -11,4 +11,10 @@
         </foreach>
     </select>
 
+    <!-- 新增套餐菜品关系 -->
+    <insert id="insert">
+        insert into `setmeal_dish` (`setmeal_id`, `dish_id`, `name`, `price`, `copies`)
+        values (#{setmealId}, #{dishId}, #{name}, #{price}, #{copies});
+    </insert>
+
 </mapper>

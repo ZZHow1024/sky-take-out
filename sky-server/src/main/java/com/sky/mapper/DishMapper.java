@@ -76,4 +76,12 @@ public interface DishMapper {
      */
     @Autofill(OperationType.UPDATE)
     void update(Dish dish);
+
+    /**
+     * @param categoryId
+     * @return
+     */
+    @Select("select `category_id`, `create_time`, `create_user`, `description`, `id`, `image`, `name`, `price`, `status`, `update_time`, `update_user`" +
+            " from `dish` where `category_id` = #{categoryId}")
+    List<Dish> selectByCategoryId(Long categoryId);
 }
